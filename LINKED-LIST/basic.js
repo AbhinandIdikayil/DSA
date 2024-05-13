@@ -27,4 +27,20 @@ class List {
         }
         this.size++;
     }
+
+    display(){
+        let values = ''
+        let current = this.head
+        while(current) {
+            values += current.value + ' '
+            current = current.next
+        }
+        console.log(values)
+    }
 }
+
+let list = new List()
+list.append(1)
+list.append(2)
+list.append(3)
+list.display()
