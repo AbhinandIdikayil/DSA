@@ -68,6 +68,39 @@ class List {
         }
     }
 
+    removeMiddle() {
+        if(this.isEmpty()){
+            return null
+        } else {
+            let previous = null;
+            let fast = this.head
+            let slow = this.head
+            while(fast && fast.next) {
+                previous = slow;
+                slow = slow.next
+                fast = fast.next.next
+            }
+            previous.next = slow.next
+        }
+        this.size--
+    }
+
+    reverse() {
+        if (this.isEmpty()) {
+            return null
+        } else {
+            let previous = null
+            let current = this.head
+            while(current) {
+                let next = current.next
+                current.next = previous
+                previous = current
+                current = next
+            }
+            this.head = previous
+        }
+    }
+
     display() {
         let values = ''
         let current = this.head
@@ -86,5 +119,6 @@ list.append(3)
 list.append(4)
 list.append(5)
 list.append(6)
-list.removeValue(4)
+list.append(7)
+list.removeMiddle()
 list.display()
