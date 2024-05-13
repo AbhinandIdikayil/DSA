@@ -68,14 +68,27 @@ class List {
         }
     }
 
+    isCircular() {
+        let fast = this.head
+        let slow = this.head
+        while(fast && fast.next) {
+            slow = slow.next
+            fast = fast.next.next
+            if(slow == fast){
+                return true
+            }
+        }
+        return false
+    }
+
     removeMiddle() {
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return null
         } else {
             let previous = null;
             let fast = this.head
             let slow = this.head
-            while(fast && fast.next) {
+            while (fast && fast.next) {
                 previous = slow;
                 slow = slow.next
                 fast = fast.next.next
@@ -91,7 +104,7 @@ class List {
         } else {
             let previous = null
             let current = this.head
-            while(current) {
+            while (current) {
                 let next = current.next
                 current.next = previous
                 previous = current
@@ -120,5 +133,5 @@ list.append(4)
 list.append(5)
 list.append(6)
 list.append(7)
-list.removeMiddle()
+console.log(list.isCircular())
 list.display()
