@@ -41,6 +41,26 @@ class Trie {
         }
         return true
     }
+    autoComplete(word) {
+        let currentNode = this.root
+        for (const char of word) {
+            if(!currentNode.children[char]){
+                return []
+            }
+            currentNode = currentNode.children[char]
+        }
+        let list = []
+        this.collectWord(currentNode,word,list)
+        return list
+    }
+    collectWord(node,word,list) {
+        if(node.isEndOfWord){
+            list.push(word)
+        }
+        for (let char in node.children) {
+            this.collectWord(node.children[char],word+char,list)
+        }
+    }
 }
 
 const trie = new Trie()
@@ -48,3 +68,4 @@ trie.insert('app')
 trie.insert('apple')
 console.log(trie.search('ap'))
 console.log(trie.startWith('ap'))
+console.log(trie.autoComplete('ap'))
